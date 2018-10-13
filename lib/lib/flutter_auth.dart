@@ -29,7 +29,7 @@ class FlutterOAuth extends OAuth {
       server = await createServer();
       listenForServerResponse(server);
 
-      final String urlParams = constructUrlParams();
+      final String urlParams = constructUrlParams(requestDetails.parameters);
       webView.onDestroy.first.then((_) {
         close();
       });

@@ -5,7 +5,7 @@ class Token {
 
   Token();
 
-  factory Token.fromJson(Map<String, String> json) =>
+  factory Token.fromJson(Map<String, dynamic> json) =>
       Token.fromMap(json);
 
   Map toMap() => Token.toJsonMap(this);

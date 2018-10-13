@@ -22,8 +22,8 @@ abstract class OAuth {
 
   Future<Map<String, dynamic>> getToken() async {
     if (token == null) {
-      Response response = await post("${tokenRequest.url}",
-          body: json.encode(tokenRequest.params),
+      final String urlParams = constructUrlParams(tokenRequest.params);
+      Response response = await post("${tokenRequest.url}?$urlParams",
           headers: tokenRequest.headers);
       token = json.decode(response.body);
     }
@@ -32,7 +32,7 @@ abstract class OAuth {
 
   bool shouldRequestCode() => code == null;
 
-  String constructUrlParams() => mapToQueryParams(requestDetails.parameters);
+  String constructUrlParams(params) => mapToQueryParams(params);
 
   String mapToQueryParams(Map<String, String> params) {
     final queryParams = <String>[];
